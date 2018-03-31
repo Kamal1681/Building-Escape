@@ -30,7 +30,7 @@ public:
 private:
 	//UProperty macros declaration
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(EditAnywhere)
 		float OpenAngle = 90.0f;
 
 	UPROPERTY(EditAnywhere)
@@ -41,6 +41,7 @@ private:
 
 		float LastOpenDoorTime;
 	
-		AActor* ActorThatOpens;
-		AActor* Owner;
+	AActor* Owner;
+
+	float GetTotalMassOfActorsOnPlate();
 };
