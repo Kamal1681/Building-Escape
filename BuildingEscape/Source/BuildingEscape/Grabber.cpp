@@ -11,7 +11,7 @@ UGrabber::UGrabber()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
-	bWantsBeginPlay = true;
+//	bWantsBeginPlay = true;
 	PrimaryComponentTick.bCanEverTick = true;
 
 }
@@ -63,15 +63,17 @@ void UGrabber::Grab()
 	auto ComponentToGrab = HitResult.GetComponent();
 	//AActor* ActorHit = HitResult.GetActor(); //To be used in the if statement below, I used GetComponenet instead and it worked
 	// if we hit something then attach a physics handle
-
+	
 	if (ComponentToGrab)
 	{
+		if (!PhysicsHandle) { return; }
 		PhysicsHandle->GrabComponent(ComponentToGrab, NAME_None, ComponentToGrab->GetOwner()->GetActorLocation(), true);
 	}
 }
 
 void UGrabber::Release()
 {
+	if (!PhysicsHandle) { return; }
 	///release physics handle
 	PhysicsHandle->ReleaseComponent();
 }
@@ -82,6 +84,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	///if the physics handle is attached
+	if (!PhysicsHandle) { return; }
 	if (PhysicsHandle->GrabbedComponent)
 	{
 		///Move the object that we are holding

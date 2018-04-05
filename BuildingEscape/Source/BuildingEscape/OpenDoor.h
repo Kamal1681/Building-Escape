@@ -34,14 +34,14 @@ private:
 		float OpenAngle = 90.0f;
 
 	UPROPERTY(EditAnywhere)
-		ATriggerVolume*	PressurePlate;
+		ATriggerVolume*	PressurePlate = nullptr;
 
 	UPROPERTY(EditAnywhere)
 		float DoorCloseDelay = 1.0f;
 
 		float LastOpenDoorTime;
 	
-	AActor* Owner;
+	AActor* Owner = nullptr;
 
 	float GetTotalMassOfActorsOnPlate();
 };
